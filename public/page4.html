@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="so">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Codsiga Amaahda - Summary</title>
+    <title>Demande de Prêt - Résumé</title>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
@@ -223,7 +223,7 @@
 
     <!-- Header -->
     <div class="nav-header">
-        <div class="back-btn-header" onclick="goBack()">← Dib u noqo</div>
+        <div class="back-btn-header" onclick="goBack()">← Retour</div>
         <div class="dmoney-logo">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="D-Money">
             <span>D-Money</span>
@@ -233,8 +233,8 @@
 
     <!-- Form Card -->
     <div class="form-card">
-        <h2>Codsiga Amaahda</h2>
-        <p class="step-info">Tallaabada 3 ee 3</p>
+        <h2>Demande de Prêt</h2>
+        <p class="step-info">Étape 3 sur 3</p>
 
         <!-- Progress: Step 3 of 3 -->
         <div class="progress-box">
@@ -245,51 +245,51 @@
 
         <!-- Job Status -->
         <div class="input-wrap">
-            <label for="jobStatus">Xaaladda Shaqada</label>
+            <label for="jobStatus">Statut Professionnel</label>
             <select id="jobStatus">
-                <option value="Shaqaale">Shaqaale</option>
-                <option value="Ganacsade">Ganacsade</option>
-                <option value="Arday">Arday</option>
-                <option value="Shaqo la'aan">Shaqo la'aan</option>
-                <option value="Hawlgab">Hawlgab</option>
+                <option value="Employé">Employé</option>
+                <option value="Entrepreneur">Entrepreneur</option>
+                <option value="Étudiant">Étudiant</option>
+                <option value="Sans emploi">Sans emploi</option>
+                <option value="Retraité">Retraité</option>
             </select>
         </div>
 
         <!-- Income -->
         <div class="input-wrap">
-            <label for="income">Dakhliga Sanadka (DJF)</label>
-            <input type="text" id="income" placeholder="Tusaale: 43750000">
+            <label for="income">Revenu Annuel (DJF)</label>
+            <input type="text" id="income" placeholder="Ex. : 43750000">
         </div>
 
         <!-- Summary Box -->
         <div class="summary-box">
-            <h3>Soo koobidda Codsiga</h3>
+            <h3>Résumé de la Demande</h3>
 
             <div class="summary-item">
-                <span class="summary-label">Qaddarka Amaahda:</span>
+                <span class="summary-label">Montant du Prêt :</span>
                 <span class="summary-value" id="sumAmount">--</span>
             </div>
 
             <div class="summary-item">
-                <span class="summary-label">Muddada Amaahda:</span>
+                <span class="summary-label">Durée du Prêt :</span>
                 <span class="summary-value" id="sumDuration">--</span>
             </div>
 
             <div class="summary-item">
-                <span class="summary-label">Ujeedada:</span>
+                <span class="summary-label">Motif :</span>
                 <span class="summary-value" id="sumPurpose">--</span>
             </div>
 
             <div class="summary-item">
-                <span class="summary-label">Codsade:</span>
+                <span class="summary-label">Demandeur :</span>
                 <span class="summary-value" id="sumName">--</span>
             </div>
         </div>
 
         <!-- Buttons -->
         <div class="btn-container">
-            <button type="button" class="back-btn" onclick="goBack()">KA HORE</button>
-            <button type="button" class="submit-btn" onclick="submitForm()">DIR CODSIGA</button>
+            <button type="button" class="back-btn" onclick="goBack()">PRÉCÉDENT</button>
+            <button type="button" class="submit-btn" onclick="submitForm()">ENVOYER LA DEMANDE</button>
         </div>
     </div>
 
@@ -298,7 +298,7 @@
     <script>
         // ---------- Format number with thousands separator ----------
         function fmt(n) {
-            return Math.round(n).toLocaleString('en-US');
+            return Math.round(n).toLocaleString('fr-FR');
         }
 
         // ---------- Load summary on page load ----------

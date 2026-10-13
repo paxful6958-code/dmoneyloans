@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="so">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>D-Money Loan</title>
+    <title>Prêt D-Money</title>
 
     <!-- Telegram SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -199,44 +199,44 @@
 
     <!-- Main Card -->
     <div class="card">
-        <h2>Hel Amaah Deg Deg ah</h2>
-        <p class="subtext">Ansixid degdeg ah • Qiimo tartan ah • Muddooyin dabacsan</p>
+        <h2>Prêt Rapide</h2>
+        <p class="subtext">Approbation rapide • Taux compétitifs • Durées flexibles</p>
 
         <!-- Amount Slider -->
         <div class="slider-section">
-            <h2 class="calculator-title">Xisaabinta Amaahda</h2>
+            <h2 class="calculator-title">Calculateur de Prêt</h2>
             <div class="slider-header">
-                <span>Qaddarka Amaahda</span>
-                <span id="valAmt" class="accent-text">1,750,000 DJF</span>
+                <span>Montant du Prêt</span>
+                <span id="valAmt" class="accent-text">1 750 000 DJF</span>
             </div>
             <input type="range" id="amt" min="175000" max="8750000" step="175000" value="1750000">
             <div class="slider-footer">
-                <span>175,000 DJF</span>
-                <span>8,750,000 DJF</span>
+                <span>175 000 DJF</span>
+                <span>8 750 000 DJF</span>
             </div>
         </div>
 
         <!-- Duration Slider -->
         <div class="slider-section">
             <div class="slider-header">
-                <span>Muddada Amaahda</span>
-                <span id="valDur" class="accent-text">12 bilood</span>
+                <span>Durée du Prêt</span>
+                <span id="valDur" class="accent-text">12 mois</span>
             </div>
             <input type="range" id="dur" min="6" max="60" step="6" value="12">
             <div class="slider-footer">
-                <span>6 bilood</span>
-                <span>60 bilood</span>
+                <span>6 mois</span>
+                <span>60 mois</span>
             </div>
         </div>
 
         <!-- Monthly Payment Result -->
         <div class="result-container">
-            <p>Lacagta Bisha</p>
-            <p id="monthly" class="result-value">172,083 DJF</p>
+            <p>Paiement Mensuel</p>
+            <p id="monthly" class="result-value">172 083 DJF</p>
         </div>
 
         <!-- Apply Button -->
-        <button class="btn-apply" onclick="goToPage2()">CODSO HADDA</button>
+        <button class="btn-apply" onclick="goToPage2()">DEMANDER MAINTENANT</button>
     </div>
 
     <!-- Footer -->
@@ -245,7 +245,7 @@
     <script>
         // ---------- Format number with thousands separator ----------
         function fmt(n) {
-            return Math.round(n).toLocaleString('en-US');
+            return Math.round(n).toLocaleString('fr-FR');
         }
 
         // ---------- Update display on slider change ----------
@@ -260,7 +260,7 @@
 
             // Update labels
             document.getElementById('valAmt').textContent = `${fmt(amount)} DJF`;
-            document.getElementById('valDur').textContent = `${duration} bilood`;
+            document.getElementById('valDur').textContent = `${duration} mois`;
 
             // Monthly payment: (amount × 1.18) / duration
             const monthly = (amount * 1.18) / duration;
@@ -276,7 +276,7 @@
 
             // Save to localStorage for the next page
             localStorage.setItem('amount', amountInput.value);
-            localStorage.setItem('loanDuration', durationInput.value + ' Bilood');
+            localStorage.setItem('loanDuration', durationInput.value + ' Mois');
 
             // Navigate to page2.html (same directory)
             window.location.href = 'page2.html';

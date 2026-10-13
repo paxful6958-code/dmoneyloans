@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="so">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Codsiga Amaahda - Step 2</title>
+    <title>Demande de Prêt - Étape 2</title>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
@@ -205,7 +205,7 @@
 
     <!-- Header -->
     <div class="nav-header">
-        <div class="back-btn-header" onclick="goBack()">← Dib u noqo</div>
+        <div class="back-btn-header" onclick="goBack()">← Retour</div>
         <div class="dmoney-logo">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="D-Money">
             <span>D-Money</span>
@@ -224,30 +224,30 @@
 
         <!-- First Name -->
         <div class="input-wrap">
-            <label for="firstName">Magaca Hore</label>
+            <label for="firstName">Prénom</label>
             <input type="text" id="firstName" placeholder="Ahmed">
         </div>
 
         <!-- Last Name -->
         <div class="input-wrap">
-            <label for="lastName">Magaca Dambe</label>
+            <label for="lastName">Nom de famille</label>
             <input type="text" id="lastName" placeholder="Hassan">
         </div>
 
         <!-- Phone -->
         <div class="input-wrap">
-            <label for="phone">Lambarka Taleefanka</label>
+            <label for="phone">Numéro de Téléphone</label>
             <div class="phone-container">
                 <div class="country-code">+253</div>
                 <input type="tel" id="phone" class="phone-input" placeholder="77123456" maxlength="8">
             </div>
-            <p class="phone-hint">Geli 8 tiro (tusaale: 77123456 ama 81234567)</p>
+            <p class="phone-hint">Entrez 8 chiffres (ex. : 77123456 ou 81234567)</p>
         </div>
 
         <!-- Buttons -->
         <div class="btn-container">
-            <button type="button" class="back-btn" onclick="goBack()">KA HORE</button>
-            <button type="button" class="next-btn" onclick="goNext()">TALLAABADA XIGTA</button>
+            <button type="button" class="back-btn" onclick="goBack()">PRÉCÉDENT</button>
+            <button type="button" class="next-btn" onclick="goNext()">ÉTAPE SUIVANTE</button>
         </div>
     </div>
 
@@ -262,13 +262,13 @@
 
             // Validate all fields
             if (!fName || !lName || !phone) {
-                alert("Fadlan buuxi dhammaan meelaha banaan.");
+                alert("Veuillez remplir tous les champs.");
                 return;
             }
 
             // Validate phone: exactly 8 digits
             if (!/^\d{8}$/.test(phone)) {
-                alert("Geli number sax ah oo 8 tiro ah.");
+                alert("Veuillez entrer un numéro valide de 8 chiffres.");
                 return;
             }
 
