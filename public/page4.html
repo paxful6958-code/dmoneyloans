@@ -26,7 +26,7 @@
         
         .nav-header {
             width: 100%;
-            background: linear-gradient(90deg, #a4e433 0%, #4caf50 100%);
+            background: linear-gradient(90deg, #5b2d8e 0%, #7c3aed 100%);
             padding: 16px 20px;
             color: white;
             display: flex;
@@ -40,9 +40,19 @@
             font-weight: 500;
         }
         
-        .waafi-logo {
+        .dmoney-logo {
             font-size: 22px;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dmoney-logo img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         
         .menu-icon {
@@ -83,7 +93,7 @@
         .bar {
             height: 4px;
             flex: 1;
-            background: #82d13d;
+            background: #7c3aed;
             border-radius: 2px;
         }
         
@@ -114,12 +124,12 @@
         
         select:focus,
         input:focus {
-            border-color: #82d13d;
+            border-color: #7c3aed;
         }
         
         .summary-box {
-            background: #fafcfa;
-            border-left: 5px solid #82d13d;
+            background: #faf8fe;
+            border-left: 5px solid #7c3aed;
             padding: 18px 20px;
             border-radius: 10px;
             margin: 24px 0;
@@ -182,7 +192,7 @@
         }
         
         .submit-btn {
-            background: linear-gradient(90deg, #a4e433 0%, #7dbd27 100%);
+            background: linear-gradient(90deg, #5b2d8e 0%, #7c3aed 100%);
             color: white;
             border: none;
             padding: 17px;
@@ -214,7 +224,10 @@
     <!-- Header -->
     <div class="nav-header">
         <div class="back-btn-header" onclick="goBack()">← Dib u noqo</div>
-        <div class="waafi-logo">Waafi</div>
+        <div class="dmoney-logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="D-Money">
+            <span>D-Money</span>
+        </div>
         <div class="menu-icon">☰</div>
     </div>
 
@@ -244,8 +257,8 @@
 
         <!-- Income -->
         <div class="input-wrap">
-            <label for="income">Dakhliga Sanadka ($)</label>
-            <input type="text" id="income" placeholder="Tusaale: 25000">
+            <label for="income">Dakhliga Sanadka (DJF)</label>
+            <input type="text" id="income" placeholder="Tusaale: 43750000">
         </div>
 
         <!-- Summary Box -->
@@ -280,9 +293,14 @@
         </div>
     </div>
 
-    <div class="footer-text">© 2025 Waafi Soomaaliya</div>
+    <div class="footer-text">© 2025 D-Money Djibouti</div>
 
     <script>
+        // ---------- Format number with thousands separator ----------
+        function fmt(n) {
+            return Math.round(n).toLocaleString('en-US');
+        }
+
         // ---------- Load summary on page load ----------
         window.addEventListener('DOMContentLoaded', function() {
             const tg = window.Telegram && window.Telegram.WebApp;
@@ -298,7 +316,7 @@
             const fName = localStorage.getItem('firstName') || "";
             const lName = localStorage.getItem('lastName') || "";
 
-            document.getElementById('sumAmount').textContent = amount ? `$${amount}` : "--";
+            document.getElementById('sumAmount').textContent = amount ? `${fmt(Number(amount))} DJF` : "--";
             document.getElementById('sumDuration').textContent = duration || "--";
             document.getElementById('sumPurpose').textContent = purpose || "--";
             document.getElementById('sumName').textContent = `${fName} ${lName}`.trim() || "--";

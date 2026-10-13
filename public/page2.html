@@ -25,7 +25,7 @@
         
         .nav-header {
             width: 100%;
-            background: linear-gradient(90deg, #a4e433 0%, #4caf50 100%);
+            background: linear-gradient(90deg, #5b2d8e 0%, #7c3aed 100%);
             padding: 16px 20px;
             color: white;
             display: flex;
@@ -39,9 +39,19 @@
             font-weight: 500;
         }
         
-        .waafi-logo {
+        .dmoney-logo {
             font-size: 22px;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dmoney-logo img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         
         .menu-icon {
@@ -87,7 +97,7 @@
         }
         
         .bar.active-bar {
-            background: #82d13d;
+            background: #7c3aed;
         }
         
         .input-wrap {
@@ -117,11 +127,11 @@
         
         select:focus,
         textarea:focus {
-            border-color: #82d13d;
+            border-color: #7c3aed;
         }
         
         input[readonly] {
-            background: #f4f6f4;
+            background: #f6f4fa;
             color: #555;
             cursor: not-allowed;
         }
@@ -155,7 +165,7 @@
         }
         
         .next-btn {
-            background: linear-gradient(90deg, #a4e433 0%, #7dbd27 100%);
+            background: linear-gradient(90deg, #5b2d8e 0%, #7c3aed 100%);
             color: white;
             border: none;
             padding: 18px;
@@ -187,7 +197,10 @@
     <!-- Header -->
     <div class="nav-header">
         <div class="back-btn-header" onclick="goBack()">← Dib u noqo</div>
-        <div class="waafi-logo">Waafi</div>
+        <div class="dmoney-logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="D-Money">
+            <span>D-Money</span>
+        </div>
         <div class="menu-icon">☰</div>
     </div>
 
@@ -217,7 +230,7 @@
 
         <!-- Loan Amount (readonly — populated from localStorage) -->
         <div class="input-wrap">
-            <label for="loanAmount">Qaddarka Amaahda ($)</label>
+            <label for="loanAmount">Qaddarka Amaahda (DJF)</label>
             <input type="text" id="loanAmount" readonly>
         </div>
 
@@ -240,9 +253,14 @@
         </div>
     </div>
 
-    <div class="footer-text">© 2026 Waafi Soomaaliya</div>
+    <div class="footer-text">© 2026 D-Money Djibouti</div>
 
     <script>
+        // ---------- Format number with thousands separator ----------
+        function fmt(n) {
+            return Math.round(n).toLocaleString('en-US');
+        }
+
         // ---------- Navigate back to index ----------
         function goBack() {
             window.location.href = "index.html";
@@ -263,7 +281,7 @@
                 return;
             }
 
-            const amount = amountInput.value || "0";
+            const amount = amountInput.value || "0 DJF";
             const durationRaw = durationInput.value || "0";
 
             // Save form fields to localStorage
@@ -273,12 +291,12 @@
             localStorage.setItem('loanPurpose', purpose);
 
             // Calculate monthly repayment: (amount * 1.18) / duration (in months)
-            const amtNum = parseFloat(amount) || 0;
+            const amtNum = parseFloat(amount.replace(/[^\d.]/g, '')) || 0;
             const durNum = parseInt(durationRaw.replace(/\D/g, '')) || 1;
-            const monthly = ((amtNum * 1.18) / durNum).toFixed(2);
+            const monthly = fmt((amtNum * 1.18) / durNum);
 
             // Save calculated values for page3
-            localStorage.setItem('loan_amount', amount);
+            localStorage.setItem('loan_amount', String(amtNum));
             localStorage.setItem('loan_term', String(durNum));
             localStorage.setItem('monthly_repayment', monthly);
 
@@ -302,7 +320,7 @@
             const savedAmount = localStorage.getItem('amount');
             const savedDuration = localStorage.getItem('loanDuration');
 
-            amountEl.value = savedAmount ? `$${Number(savedAmount).toLocaleString()}` : "$1,000";
+            amountEl.value = savedAmount ? `${fmt(Number(savedAmount))} DJF` : "1,750,000 DJF";
             durationEl.value = savedDuration || "12 Bilood";
         });
     </script>
