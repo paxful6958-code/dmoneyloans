@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="so">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Demande de Prêt - Étape 1</title>
+    <title>Dalabka Deynta - Tallaabada 1</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
@@ -196,7 +196,7 @@
 
     <!-- Header -->
     <div class="nav-header">
-        <div class="back-btn-header" onclick="goBack()">← Retour</div>
+        <div class="back-btn-header" onclick="goBack()">← Dib ""<span style="display:none">u</span></div>
         <div class="dmoney-logo">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_5VYmxA4NGfip7K56How6z7pn9bFgakJPQwVOc3iyQ&s=10" alt="D-Money">
             <span>D-Money</span>
@@ -206,8 +206,8 @@
 
     <!-- Form Card -->
     <div class="form-card">
-        <h2>Demande de Prêt</h2>
-        <p class="step-info">Étape 1 sur 3</p>
+        <h2>Dalabka Deynta</h2>
+        <p class="step-info">Tallaabada 1 ee 3</p>
 
         <!-- Progress -->
         <div class="progress-box">
@@ -218,47 +218,47 @@
 
         <!-- Loan Type -->
         <div class="input-wrap">
-            <label for="loanType">Type de Prêt</label>
+            <label for="loanType">Nooca Deynta</label>
             <select id="loanType">
-                <option value="Prêt Personnel" selected>Prêt Personnel</option>
-                <option value="Prêt Commercial">Prêt Commercial</option>
-                <option value="Prêt Automobile">Prêt Automobile</option>
-                <option value="Prêt Immobilier">Prêt Immobilier</option>
-                <option value="Prêt Étudiant">Prêt Étudiant</option>
+                <option value="Deynta Shakhsiga" selected>Deynta Shakhsiga</option>
+                <option value="Deynta Ganacsiga">Deynta Ganacsiga</option>
+                <option value="Deynta Baabuurka">Deynta Baabuurka</option>
+                <option value="Deynta Guryaha">Deynta Guryaha</option>
+                <option value="Deynta Ardayda">Deynta Ardayda</option>
             </select>
         </div>
 
         <!-- Loan Amount (readonly — populated from localStorage) -->
         <div class="input-wrap">
-            <label for="loanAmount">Montant du Prêt (DJF)</label>
+            <label for="loanAmount">Inta le'eg ee Deynta (DJF)</label>
             <input type="text" id="loanAmount" readonly>
         </div>
 
         <!-- Loan Duration (readonly — populated from localStorage) -->
         <div class="input-wrap">
-            <label for="loanDuration">Durée du Prêt</label>
+            <label for="loanDuration">Muddada Deynta</label>
             <input type="text" id="loanDuration" readonly>
         </div>
 
         <!-- Loan Purpose -->
         <div class="input-wrap">
-            <label for="loanPurpose">Motif du Prêt</label>
-            <textarea id="loanPurpose" rows="3" placeholder="Pourquoi avez-vous besoin de ce prêt ?"></textarea>
+            <label for="loanPurpose">Ujeedada Deynta</label>
+            <textarea id="loanPurpose" rows="3" placeholder="Maxaad ugu baahan tahay deyntan?"></textarea>
         </div>
 
         <!-- Buttons -->
         <div class="btn-container">
-            <button class="back-btn" onclick="goBack()">PRÉCÉDENT</button>
-            <button class="next-btn" onclick="goNext()">ÉTAPE SUIVANTE</button>
+            <button class="back-btn" onclick="goBack()">KA HORE</button>
+            <button class="next-btn" onclick="goNext()">TALLAABADA XIGTA</button>
         </div>
     </div>
 
-    <div class="footer-text">© 2026 D-Money Djibouti</div>
+    <div class="footer-text">© 2026 D-Money Jabuuti</div>
 
     <script>
         // ---------- Format number with thousands separator ----------
         function fmt(n) {
-            return Math.round(n).toLocaleString('fr-FR');
+            return Math.round(n).toLocaleString('en-US');
         }
 
         // ---------- Navigate back to index ----------
@@ -276,7 +276,7 @@
             // Validate purpose
             const purpose = purposeTextarea.value.trim();
             if (!purpose) {
-                alert("Veuillez indiquer le motif du prêt.");
+                alert("Fadlan sheeg ujeedada deynta.");
                 purposeTextarea.focus();
                 return;
             }
@@ -320,8 +320,8 @@
             const savedAmount = localStorage.getItem('amount');
             const savedDuration = localStorage.getItem('loanDuration');
 
-            amountEl.value = savedAmount ? `${fmt(Number(savedAmount))} DJF` : "1 750 000 DJF";
-            durationEl.value = savedDuration || "12 Mois";
+            amountEl.value = savedAmount ? `${fmt(Number(savedAmount))} DJF` : "1,750,000 DJF";
+            durationEl.value = savedDuration || "12 Bilood";
         });
     </script>
 
