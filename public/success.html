@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waafi - Success</title>
+    <title>Waafi - Guul</title>
     <style>
         /* --- CSS STYLES --- */
         
@@ -282,7 +282,6 @@
             const monthlyPay = localStorage.getItem('monthly_repayment') || "90";
 
             // Update UI
-            // Using toLocaleString adds commas like $1,000
             document.getElementById('display-amount').innerText = "$" + Number(loanAmount).toLocaleString();
             document.getElementById('display-term').innerText = loanTerm + " Bilood";
             document.getElementById('display-monthly').innerText = "$" + Number(monthlyPay).toLocaleString();
